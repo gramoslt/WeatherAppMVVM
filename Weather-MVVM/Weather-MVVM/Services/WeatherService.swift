@@ -31,14 +31,14 @@ final class WeatherService: WeatherServiceProtocol {
 
     // ---- HELPER FUNCTIONS ----
     private func buildURL(cityName: String) throws -> URL {
-        var components = URLComponents(string: baseURL)
+        var components = URLComponents(string: baseURL)!
 
-        components?.queryItems = [
+        components.queryItems = [
             URLQueryItem(name: "key", value: API_KEY),
             URLQueryItem(name: "q", value: cityName)
         ]
 
-        guard let url = components?.url else {
+        guard let url = components.url else {
             throw WeatherError.invalidURL
         }
 
@@ -85,5 +85,20 @@ enum WeatherError: LocalizedError {
             case .noConnection:
                 return "No internet connection"
         }
+    }
+}
+
+struct MockWeatherService: WeatherServiceProtocol {
+    var shouldFail = false
+
+    func fetchWeather(cityName: String) async throws -> WeatherResponseModel {
+        // Simulate delay
+        try await Task.sleep(nanoseconds: 1_000_000_000) // 1 sec
+
+        if shouldFail {
+            throw WeatherError.noConnection
+        }
+
+        return WeatherResponseModel.Mock
     }
 }

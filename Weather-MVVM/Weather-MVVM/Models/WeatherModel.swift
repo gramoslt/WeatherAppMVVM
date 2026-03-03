@@ -65,3 +65,18 @@ struct WeatherDisplayModel: Decodable {
         self.weatherIcon = "\(weatherResponse.current.condition.icon)"
     }
 }
+
+extension WeatherResponseModel {
+    static let Mock: WeatherResponseModel = WeatherResponseModel(
+        location: Location(name: "Mexico", country: "Mexico", lat: 25.00, lon: 50.00, tz_id: "UTC-06_00"),
+        current: CurrentWeatherModel(
+            tempC: 22.0,
+            tempF: 72.0,
+            isDay: 1,
+            condition: ConditionModel(text: "Sunny", icon: "Sunny.icon", code: 01),
+            windKph: 5.0,
+            feelsLikeC: 22.0,
+            feelsLikeF: 73.0
+        )
+    )
+}
