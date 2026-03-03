@@ -16,6 +16,7 @@ struct WeatherView: View {
 
             VStack {
                 TextField("city name", text: $viewModel.selectedCity)
+                    .textFieldStyle(.roundedBorder)
 
                 mainContent
             }
@@ -104,3 +105,10 @@ struct ErrorView: View {
     }
 }
 
+#Preview {
+    WeatherView(
+        viewModel: WeatherViewModel(
+            service: MockWeatherService()
+        )
+    )
+}

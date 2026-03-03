@@ -19,5 +19,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(viewModel: WeatherViewModel(service: MockWeatherService()))
 }
