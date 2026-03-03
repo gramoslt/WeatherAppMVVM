@@ -15,7 +15,7 @@ protocol WeatherServiceProtocol {
 
 final class WeatherService: WeatherServiceProtocol {
 
-    private let baseURL: String = "http://api.weatherapi.com/v1/current.json"
+    private let baseURL: String = "https://api.weatherapi.com/v1/current.json"
 
     func fetchWeather(cityName: String) async throws -> WeatherResponseModel {
         let url = try buildURL(cityName: cityName)
