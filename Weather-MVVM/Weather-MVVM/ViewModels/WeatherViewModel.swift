@@ -17,6 +17,7 @@ enum ViewState {
 }
 
 @Observable
+@MainActor
 final class WeatherViewModel {
 
     var selectedCity: String = "Mexico City"
